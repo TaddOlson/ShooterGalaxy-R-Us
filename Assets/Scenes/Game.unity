@@ -216,9 +216,6 @@ GameObject:
   - component: {fileID: 447274765}
   - component: {fileID: 447274764}
   - component: {fileID: 447274763}
-  - component: {fileID: 447274762}
-  - component: {fileID: 447274761}
-  - component: {fileID: 447274767}
   - component: {fileID: 447274768}
   m_Layer: 0
   m_Name: Player
@@ -227,34 +224,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &447274761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447274760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4da666d269c91d47a28e05ff5e84a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3.5
-  _laserPrefab: {fileID: 0}
---- !u!114 &447274762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447274760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4da666d269c91d47a28e05ff5e84a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3.5
-  _laserPrefab: {fileID: 0}
 --- !u!65 &447274763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -329,20 +298,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &447274767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 447274760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4da666d269c91d47a28e05ff5e84a3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3.5
-  _laserPrefab: {fileID: 0}
 --- !u!114 &447274768
 MonoBehaviour:
   m_ObjectHideFlags: 0
