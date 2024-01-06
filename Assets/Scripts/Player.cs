@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     //every variable has a name 
     // optional value assigned
     [SerializeField]
-    private float _speed = 3.5f;
+    private float _speed = 25.0f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]

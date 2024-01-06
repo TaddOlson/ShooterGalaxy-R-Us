@@ -6,15 +6,16 @@ public class Enemy : MonoBehaviour
 {
    
     [SerializeField]
-    private float _speed = 4f;
+    private float _speed = 4.0f;
     public Enemy prefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(0, 12, 0);
+        transform.position = new Vector3(0, 8, 0);
+        
     }
-
+       
    
     // Update is called once per frame
     void Update()
@@ -24,11 +25,12 @@ public class Enemy : MonoBehaviour
 
         //if bottom of screen
         //respawn at top with a random x position
-        if (transform.position.y < -6f)
+        if (transform.position.y < -6.0f)
         {
-            Vector3 position = new Vector3(Random.Range(12.0f, 12.0f), 0, 0);
-            Instantiate(prefab, position, Quaternion.identity);
+            float randomX = Random.Range(-10f, 10f);
+            transform.position = new Vector3(randomX, 8, 0);
         }
         
+
     }
 }
