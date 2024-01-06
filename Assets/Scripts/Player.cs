@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // public or prive reference
-    // data type (int >whole numbers<, float >decimal<, bool >true or false statements<, string >letters, phrase, or statements<) 
-    //every variable has a name 
-    // optional value assigned
     [SerializeField]
     private float _speed = 25.0f;
     [SerializeField]

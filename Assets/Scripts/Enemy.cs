@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4.0f;
     public Enemy prefab;
+   
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,4 +35,28 @@ public class Enemy : MonoBehaviour
         
 
     }
+
+    [SerializeField]
+    private void OnTriggerEnter(Collider other)
+    {   
+        // if other is player
+        //damage the player
+        //destroy us
+        if (other.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
+
+        //if other is laser
+        //laser destroys
+        //destroy us
+        if (other.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+        }
+        
+    }
+
+  
 }
