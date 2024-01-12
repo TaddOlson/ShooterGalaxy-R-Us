@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
    
     [SerializeField]
-    private float _speed = 4.0f;
+    private float _speed = 1.0f;
     public Enemy prefab;
    
     
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     }
 
     [SerializeField]
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {   
         if (other.tag == "Player")
         {
