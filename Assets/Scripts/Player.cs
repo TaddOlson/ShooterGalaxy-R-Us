@@ -62,14 +62,11 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
-
-        
     }
 
     void FireLaser()
     {
         _canFire = Time.time + _fireRate;
-        Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         if(_tripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
@@ -107,12 +104,22 @@ public class Player : MonoBehaviour
     public void TripleShotActive()
     {
         //tripleShotActive becomes true
+        if (_tripleShotActive == false)
+        {
+            Powerup powerup = transform.GetComponent<Powerup>();
+        }
         //start the power down coroutine for triple shot
+        StartCoroutine(TripleShotPowerDownRoutine());
     }
 
     //IEnumerator TripleShotPowerDownRoutine
     //wait 5 seconds
     //set the triple shot to false
+    IEnumerator TripleShotPowerDownRoutine()
+    {
 
+
+        yield return new WaitForSeconds(5.0f);
+    }
 
 }
