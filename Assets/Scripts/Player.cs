@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
-    private bool _tripleShotActive = false;
+    private bool _isTripleShotActive = false;
     //variable for isTripleShotActive
 
     // Start is called before the first frame update
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     void FireLaser()
     {
         _canFire = Time.time + _fireRate;
-        if(_tripleShotActive == true)
+        if(_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
@@ -104,10 +104,7 @@ public class Player : MonoBehaviour
     public void TripleShotActive()
     {
         //tripleShotActive becomes true
-        if (_tripleShotActive == false)
-        {
-            Powerup powerup = transform.GetComponent<Powerup>();
-        }
+        _isTripleShotActive = true;
         //start the power down coroutine for triple shot
         StartCoroutine(TripleShotPowerDownRoutine());
     }
@@ -117,9 +114,8 @@ public class Player : MonoBehaviour
     //set the triple shot to false
     IEnumerator TripleShotPowerDownRoutine()
     {
-
-
         yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
     }
 
 }

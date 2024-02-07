@@ -8,6 +8,7 @@ public class Powerup : MonoBehaviour
     private float _speed = 3.0f;
     private bool _instantDestroy = false;
     private GameObject _tripleShotPrefab;
+    private GameObject _powerUp;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,11 @@ public class Powerup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Player player = other.transform.GetComponent<Player>();
+            if (player != null)
+            {
+                player.TripleShotActive();
+            }
             //communicate with the player script
             Destroy(this.gameObject);
         }
@@ -46,7 +52,7 @@ public class Powerup : MonoBehaviour
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newPowerup = Instantiate(_tripleShotPrefab, posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(15.0f);
+            yield return new WaitForSeconds(10.0f);
         }
     }
 
