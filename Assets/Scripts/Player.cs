@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     private GameObject _tripleShotPrefab;
     [SerializeField]
     private bool _isTripleShotActive = false;
-    //variable for isTripleShotActive
 
     // Start is called before the first frame update
     void Start()
@@ -76,24 +75,12 @@ public class Player : MonoBehaviour
            
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
-        //if space key press,
-        //if tripleshotactive is true
-            //fire 3 lasers (triple shot prefab)
-
-        //else fire 1 laser
-
-        //instantiate 3 lasers (triple shot prefab)
-
     }
 
     public void Damage()
     {
-        //same thing
         _lives --;
-        //_lives = _lives - 1;
-        //_lives -= 1;
-        //_lives --;
-
+       
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
@@ -103,15 +90,10 @@ public class Player : MonoBehaviour
  
     public void TripleShotActive()
     {
-        //tripleShotActive becomes true
         _isTripleShotActive = true;
-        //start the power down coroutine for triple shot
         StartCoroutine(TripleShotPowerDownRoutine());
     }
 
-    //IEnumerator TripleShotPowerDownRoutine
-    //wait 5 seconds
-    //set the triple shot to false
     IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
