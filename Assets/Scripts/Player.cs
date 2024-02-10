@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     private GameObject _tripleShotPrefab;
     [SerializeField]
     private bool _isTripleShotActive = false;
+    [SerializeField]
+    private bool _isSpeedActive = false;
+    [SerializeField]
+    private bool _isShieldsActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -100,4 +104,27 @@ public class Player : MonoBehaviour
         _isTripleShotActive = false;
     }
 
+    public void SpeedActive()
+    {
+        _isSpeedActive = true;
+        StartCoroutine(SpeedPowerDownRoutine());
+    }
+
+    IEnumerator SpeedPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedActive = false;
+    }
+
+    public void ShieldsActive()
+    {
+        _isShieldsActive = true;
+        StartCoroutine(ShieldsPowerDownRoutine());
+    }
+
+    IEnumerator ShieldsPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isShieldsActive = false;
+    }
 }
