@@ -17,11 +17,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
+    private GameObject _speedPrefab;
+    [SerializeField]
+    private GameObject _shieldsPrefab;
+    [SerializeField]
     private bool _isTripleShotActive = false;
     [SerializeField]
     private bool _isSpeedActive = false;
     [SerializeField]
     private bool _isShieldsActive = false;
+    [SerializeField]
+    private int powerupID;
 
     // Start is called before the first frame update
     void Start()

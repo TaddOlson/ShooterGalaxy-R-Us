@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6783383746876122210}
   - component: {fileID: 8613295778347983093}
-  - component: {fileID: 5257720757150222052}
-  - component: {fileID: 5859553175241948122}
   - component: {fileID: -5025733942391822780}
+  - component: {fileID: 5859553175241948122}
+  - component: {fileID: 5257720757150222052}
   m_Layer: 0
   m_Name: Shields_Powerup
   m_TagString: Untagged
@@ -84,20 +84,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5257720757150222052
-MonoBehaviour:
+--- !u!58 &-5025733942391822780
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743761318382681063}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d1c489e79887b45b6d8e52f82496f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
-  powerupID: 2
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.56
 --- !u!50 &5859553175241948122
 Rigidbody2D:
   serializedVersion: 4
@@ -119,19 +121,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-5025733942391822780
-CircleCollider2D:
+--- !u!114 &5257720757150222052
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743761318382681063}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2.56
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d1c489e79887b45b6d8e52f82496f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 3
+  powerupID: 2
