@@ -5,7 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 5f;
+    private float _speed = 3.5f;
+    private float _speedMultiplier = 2f;
     [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]
@@ -17,14 +18,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _tripleShotPrefab;
     [SerializeField]
-    private GameObject _speedPrefab;
+    private GameObject _speedBoostPrefab;
     [SerializeField]
     private GameObject _shieldsPrefab;
-    [SerializeField]
+
     private bool _isTripleShotActive = false;
-    [SerializeField]
-    private bool _isSpeedActive = false;
-    [SerializeField]
+    private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
     [SerializeField]
     private int powerupID;
@@ -50,6 +49,7 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
     }
 
     void CalculateMovement()
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0);
-        
+
         transform.Translate(movement * _speed * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, -3.8f, 5.9f), 0);
@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
+
     }
 
     void FireLaser()
@@ -96,6 +97,11 @@ public class Player : MonoBehaviour
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
+
+        if (_isShieldsActive == true)
+        {
+            StartCoroutine(ShieldsPowerDownRoutine());
+        }
     }
  
     public void TripleShotActive()
@@ -110,16 +116,20 @@ public class Player : MonoBehaviour
         _isTripleShotActive = false;
     }
 
-    public void SpeedActive()
+    public void SpeedBoostActive()
     {
-        _isSpeedActive = true;
+        _isSpeedBoostActive = true;
+        _speed *= _speedMultiplier;
+        Instantiate(_speedBoostPrefab, transform.position + new Vector3(-.03f, -2.04f, 0), Quaternion.identity);
         StartCoroutine(SpeedPowerDownRoutine());
     }
 
     IEnumerator SpeedPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
-        _isSpeedActive = false;
+        _isSpeedBoostActive = false;
+        _speed /= _speedMultiplier;
+        Destroy(this.gameObject);
     }
 
     public void ShieldsActive()

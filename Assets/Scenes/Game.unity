@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 1069163634}
   - component: {fileID: 1069163633}
   - component: {fileID: 1069163636}
+  - component: {fileID: 1069163637}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -242,9 +243,14 @@ MonoBehaviour:
   _lives: 3
   _tripleShotPrefab: {fileID: 8552063044126188814, guid: 9a9aa4da8f8d8794c9f2ae659e56ca46,
     type: 3}
+  _speedBoostPrefab: {fileID: 3511508412529795736, guid: 3d8e60aa8cab0c54fb166bfdca93b0ff,
+    type: 3}
+  _shieldsPrefab: {fileID: 3072815048312194617, guid: 517a55acf25f61e47b88ebba5bfc0aaf,
+    type: 3}
   _isTripleShotActive: 0
   _isSpeedActive: 0
   _isShieldsActive: 0
+  powerupID: 0
 --- !u!212 &1069163634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -335,6 +341,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2540257, y: 3.8760166}
   m_EdgeRadius: 0
+--- !u!95 &1069163637
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069163632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7edfe4d126e5914dbf0b46a68cf0b11, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1353810687
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +596,10 @@ MonoBehaviour:
     type: 3}
   _enemyContainer: {fileID: 1353810687}
   _tripleShotPowerupPrefab: {fileID: 61230701469436698, guid: 43e441abd6bd4304ab7b34e8712a7c42,
+    type: 3}
+  _speedPowerupPrefab: {fileID: 8077432375351336126, guid: ca83bb6aba242d84e927d73b4d7a3ea6,
+    type: 3}
+  _shieldsPowerupPrefab: {fileID: 743761318382681063, guid: 6b97ee28b6e9d0f4ca4f163802be4a84,
     type: 3}
 --- !u!4 &1877394603
 Transform:
