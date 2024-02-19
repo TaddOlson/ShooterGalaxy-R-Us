@@ -247,9 +247,6 @@ MonoBehaviour:
     type: 3}
   _shieldsPrefab: {fileID: 3072815048312194617, guid: 517a55acf25f61e47b88ebba5bfc0aaf,
     type: 3}
-  _isTripleShotActive: 0
-  _isSpeedActive: 0
-  _isShieldsActive: 0
   powerupID: 0
 --- !u!212 &1069163634
 SpriteRenderer:
