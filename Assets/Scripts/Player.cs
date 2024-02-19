@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
         _speed *= _speedMultiplier;
         Instantiate(_speedBoostPrefab, transform.position + new Vector3(-.03f, -2.04f, 0), Quaternion.identity);
         StartCoroutine(SpeedPowerDownRoutine());
+
     }
 
     IEnumerator SpeedPowerDownRoutine()
