@@ -135,7 +135,9 @@ public class Player : MonoBehaviour
 
     public void ShieldsActive()
     {
+        
         _isShieldsActive = true;
+        Instantiate(_shieldsPrefab, , Quaternion.identity);
         StartCoroutine(ShieldsPowerDownRoutine());
     }
 
