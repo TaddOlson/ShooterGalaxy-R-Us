@@ -25,8 +25,6 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
-    [SerializeField]
-    private int powerupID;
 
     // Start is called before the first frame update
     void Start()
@@ -77,33 +75,39 @@ public class Player : MonoBehaviour
     void FireLaser()
     {
         _canFire = Time.time + _fireRate;
-        if(_isTripleShotActive == true)
+        if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
         }
         else
         {
-           
+
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
     }
 
     public void Damage()
     {
-        _lives --;
-       
+        //if shields is active
+        //do nothing...
+        //deactivate shields
+        //return;
+        if (_isShieldsActive == true)
+        {
+            Instantiate(_shieldsPrefab, transform.position, Quaternion.identity);
+
+        }
+
+        _lives--;
+
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
             Destroy(this.gameObject);
         }
 
-        if (_isShieldsActive == true)
-        {
-            StartCoroutine(ShieldsPowerDownRoutine());
-        }
     }
- 
+
     public void TripleShotActive()
     {
         _isTripleShotActive = true;
@@ -135,15 +139,8 @@ public class Player : MonoBehaviour
 
     public void ShieldsActive()
     {
-        
         _isShieldsActive = true;
-        Instantiate(_shieldsPrefab, , Quaternion.identity);
-        StartCoroutine(ShieldsPowerDownRoutine());
     }
+}  
 
-    IEnumerator ShieldsPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isShieldsActive = false;
-    }
-}
+    
