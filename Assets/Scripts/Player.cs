@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
 
+    //variable reference for shields and speed visualizers
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,8 +96,9 @@ public class Player : MonoBehaviour
         //return;
         if (_isShieldsActive == true)
         {
-            Instantiate(_shieldsPrefab, transform.position, Quaternion.identity);
-
+            _isShieldsActive = false;
+            Destroy(_shieldsPrefab);
+            return;
         }
 
         _lives--;
@@ -126,7 +129,7 @@ public class Player : MonoBehaviour
         _speed *= _speedMultiplier;
         Instantiate(_speedBoostPrefab, transform.position + new Vector3(-.03f, -2.04f, 0), Quaternion.identity);
         StartCoroutine(SpeedPowerDownRoutine());
-
+        
     }
 
     IEnumerator SpeedPowerDownRoutine()
@@ -134,12 +137,13 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
         _speed /= _speedMultiplier;
-        Destroy(this.gameObject);
     }
 
     public void ShieldsActive()
     {
         _isShieldsActive = true;
+        //enable visualizer
+        Instantiate(_shieldsPrefab, transform.position, Quaternion.identity);
     }
 }  
 
