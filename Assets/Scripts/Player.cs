@@ -17,14 +17,16 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private GameObject _tripleShotPrefab;
-    [SerializeField]
-    private GameObject _speedBoostPrefab;
-    [SerializeField]
-    private GameObject _shieldsPrefab;
-
+    
+    
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
+
+    [SerializeField]
+    private GameObject _shieldVisualizer;
+    [SerializeField]
+    private GameObject _speedBoostVisualizer;
 
     //variable reference for shields and speed visualizers
 
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour
         if (_isShieldsActive == true)
         {
             _isShieldsActive = false;
-            Destroy(_shieldsPrefab);
+            _shieldVisualizer.SetActive(false);
             return;
         }
 
@@ -127,7 +129,7 @@ public class Player : MonoBehaviour
     {
         _isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
-        Instantiate(_speedBoostPrefab, transform.position + new Vector3(-.03f, -2.04f, 0), Quaternion.identity);
+        _speedBoostVisualizer.SetActive(true);
         StartCoroutine(SpeedPowerDownRoutine());
         
     }
@@ -136,14 +138,14 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
+        _speedBoostVisualizer.SetActive(false);
         _speed /= _speedMultiplier;
     }
 
     public void ShieldsActive()
-    {
+    {  
         _isShieldsActive = true;
-        //enable visualizer
-        Instantiate(_shieldsPrefab, transform.position, Quaternion.identity);
+        _shieldVisualizer.SetActive(true);
     }
 }  
 
