@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _speedBoostVisualizer;
 
+    [SerializeField]
+    private int _score;
+
     //variable reference for shields and speed visualizers
 
     // Start is called before the first frame update
@@ -147,6 +150,9 @@ public class Player : MonoBehaviour
         _isShieldsActive = true;
         _shieldVisualizer.SetActive(true);
     }
+
+    //method to add 10 to the score!
+    //Communicate with the UI to update the score
 }  
 
     
