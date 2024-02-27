@@ -31,18 +31,25 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _score;
 
-    //variable reference for shields and speed visualizers
+    private UIManager _uiManager;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL.");
         }
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("The UI Manager is NULL");
+        }
+
     }
 
     // Update is called once per frame
@@ -95,10 +102,7 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        //if shields is active
-        //do nothing...
-        //deactivate shields
-        //return;
+       
         if (_isShieldsActive == true)
         {
             _isShieldsActive = false;
@@ -153,6 +157,12 @@ public class Player : MonoBehaviour
 
     //method to add 10 to the score!
     //Communicate with the UI to update the score
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
+    }
+
 }  
 
     
