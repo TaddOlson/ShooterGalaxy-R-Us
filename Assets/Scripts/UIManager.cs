@@ -36,13 +36,10 @@ public class UIManager : MonoBehaviour
 
         if (currentLives == 0)
         {
-            GameOverText();
+            _gameOverText.gameObject.SetActive(true);
         }
     }
 
-    public void GameOverText()
-    {
-        _gameOverText.gameObject.SetActive(true);
-    }
+    
 
 }
