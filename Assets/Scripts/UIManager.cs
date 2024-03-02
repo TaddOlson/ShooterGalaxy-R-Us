@@ -61,11 +61,11 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateLevel()
+    public void Restart()
     {
-        if(Input.GetKeyDown("R"))
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
