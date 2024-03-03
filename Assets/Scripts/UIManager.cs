@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -18,8 +18,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Text _restartText;
 
-    
-
+    private GameManager _gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +26,12 @@ public class UIManager : MonoBehaviour
         _scoreText.text = "Score: " + 0;
         _gameOverText.gameObject.SetActive(false);
         _restartText.gameObject.SetActive(false);
+        _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+
+        if (_gameManager == null)
+        {
+            Debug.LogError("GameManager is NULL.");
+        }
     }
 
     public void UpdateScore(int playerScore)
@@ -42,11 +47,17 @@ public class UIManager : MonoBehaviour
 
         if (currentLives == 0)
         {
-            _restartText.gameObject.SetActive(true);
-            _gameOverText.gameObject.SetActive(true);
-            StartCoroutine(GameOverFlickerRoutine());
+            GameOverSequence();
         }
 
+    }
+
+    void GameOverSequence()
+    {
+        _gameManager.GameOver();
+        _restartText.gameObject.SetActive(true);
+        _gameOverText.gameObject.SetActive(true);
+        StartCoroutine(GameOverFlickerRoutine());
     }
 
     IEnumerator GameOverFlickerRoutine()
@@ -60,13 +71,4 @@ public class UIManager : MonoBehaviour
         }
         
     }
-
-    public void Restart()
-    {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
 }

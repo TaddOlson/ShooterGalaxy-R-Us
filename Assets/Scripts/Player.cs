@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
-    
+  
 }  
 
     
