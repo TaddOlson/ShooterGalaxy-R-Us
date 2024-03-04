@@ -7,12 +7,19 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private bool _isGameOver;
+    [SerializeField]
+    private bool _isMainMenuChosen;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
         {
             SceneManager.LoadScene(1); //Curent Game Scene
+        }
+
+        if(Input.GetKeyDown(KeyCode.M) && _isMainMenuChosen == true)
+        {
+            SceneManager.LoadScene(0); //Main Menu Scene
         }
     }
 
@@ -21,4 +28,8 @@ public class GameManager : MonoBehaviour
         _isGameOver = true;
     }
 
+    public void MainMenu()
+    {
+        _isMainMenuChosen = true;
+    }
 }
