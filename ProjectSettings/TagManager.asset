@@ -12,6 +12,7 @@ TagManager:
   - Shields
   - SpeedBoost
   - ScoreText
+  - Asteroid
   layers:
   - Default
   - TransparentFX

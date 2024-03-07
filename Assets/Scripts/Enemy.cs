@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private float _speed = 4.0f;
 
     private Player _player;
-    //handle to animator component
+    
     private Animator _anim;
 
 
@@ -22,8 +22,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("The Player is NULL.");
         }
-        //null check player
-        //assign component to anim
+        
         _anim = GetComponent<Animator>();
 
         if(_anim == null)

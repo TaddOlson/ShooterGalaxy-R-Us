@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //handle to Text
     [SerializeField]
     private Text _scoreText;
     [SerializeField]
@@ -44,8 +43,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateLives(int currentLives)
     {
-        //display img sprite
-        //give it a new one based on the currentLives index
         _LivesImg.sprite = _livesSprites[currentLives];
 
         if (currentLives == 0)

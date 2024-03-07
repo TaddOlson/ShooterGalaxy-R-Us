@@ -158,8 +158,6 @@ public class Player : MonoBehaviour
         _shieldVisualizer.SetActive(true);
     }
 
-    //method to add 10 to the score!
-    //Communicate with the UI to update the score
     public void AddScore(int points)
     {
         _score += points;
