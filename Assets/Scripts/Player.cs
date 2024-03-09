@@ -17,8 +17,11 @@ public class Player : MonoBehaviour
     private SpawnManager _spawnManager;
     [SerializeField]
     private GameObject _tripleShotPrefab;
-    
-    
+    [SerializeField]
+    private GameObject _explosionPrefab;
+    [SerializeField]
+    private GameObject _thruster;
+
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldsActive = false;
@@ -29,10 +32,16 @@ public class Player : MonoBehaviour
     private GameObject _speedBoostVisualizer;
 
     [SerializeField]
+    private GameObject _rightEngine, _leftEngine;
+
+    [SerializeField]
     private int _score;
 
     private UIManager _uiManager;
 
+    
+    public AudioClip laserShot;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +60,8 @@ public class Player : MonoBehaviour
             Debug.LogError("The UI Manager is NULL");
         }
 
+        _rightEngine.gameObject.SetActive(false);
+        _leftEngine.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -99,6 +110,20 @@ public class Player : MonoBehaviour
 
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
         }
+
+        //play the laser audio clip
+        StartCoroutine(LaserSoundRoutine());
+
+    }
+    
+    IEnumerator LaserSoundRoutine()
+    {
+        AudioSource audio = GetComponent<AudioSource>();
+        
+        audio.Play();
+        yield return new WaitForSeconds(audio.clip.length);
+        audio.clip = laserShot;
+        audio.Play();
     }
 
     public void Damage()
@@ -113,14 +138,25 @@ public class Player : MonoBehaviour
 
         _lives--;
 
+        if (_lives == 2)
+        {
+            _rightEngine.gameObject.SetActive(true);
+        }
+        else if (_lives == 1)
+        {
+            _leftEngine.gameObject.SetActive(true);
+        }
+        
         _uiManager.UpdateLives(_lives);
 
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
 
+        
     }
 
     public void TripleShotActive()
@@ -139,17 +175,18 @@ public class Player : MonoBehaviour
     {
         _isSpeedBoostActive = true;
         _speed *= _speedMultiplier;
-        _speedBoostVisualizer.SetActive(true);
+        _thruster.gameObject.SetActive(false);
+        _speedBoostVisualizer.gameObject.SetActive(true);
         StartCoroutine(SpeedPowerDownRoutine());
-        
     }
 
     IEnumerator SpeedPowerDownRoutine()
     {
         yield return new WaitForSeconds(5.0f);
         _isSpeedBoostActive = false;
-        _speedBoostVisualizer.SetActive(false);
         _speed /= _speedMultiplier;
+        _thruster.gameObject.SetActive(true);
+        _speedBoostVisualizer.gameObject.SetActive(false);
     }
 
     public void ShieldsActive()
