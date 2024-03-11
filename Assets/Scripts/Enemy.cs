@@ -12,11 +12,15 @@ public class Enemy : MonoBehaviour
     
     private Animator _anim;
 
+    [SerializeField]
+    private AudioClip _explosionSoundClip;
+    private AudioSource _audioSource;
 
     //Start is called before the first frame update
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
@@ -30,6 +34,14 @@ public class Enemy : MonoBehaviour
             Debug.LogError("The Animator is NULL.");
         }
 
+        if(_audioSource == null)
+        {
+            Debug.LogError("AudioSource on the Enemy is NULL.");
+        }
+        else
+        {
+            _audioSource.clip = _explosionSoundClip;
+        }
     }
 
     // Update is called once per frame
@@ -73,10 +85,10 @@ public class Enemy : MonoBehaviour
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             Destroy(gameObject.GetComponent<BoxCollider2D>());
-           
+            
         }
-        
 
+        _audioSource.Play();
     }
 
   

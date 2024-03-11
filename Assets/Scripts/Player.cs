@@ -39,8 +39,10 @@ public class Player : MonoBehaviour
 
     private UIManager _uiManager;
 
+    [SerializeField]
+    private AudioClip _laserSoundClip, _explosionSoundClip;
+    private AudioSource _audioSource;
     
-    public AudioClip laserShot;
     
 
     // Start is called before the first frame update
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0, 0);
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_spawnManager == null)
         {
@@ -60,8 +63,20 @@ public class Player : MonoBehaviour
             Debug.LogError("The UI Manager is NULL");
         }
 
+        if (_audioSource == null)
+        {
+            Debug.LogError("AudioSource on the Player is NULL.");
+        }
+        else
+        {
+            _audioSource.clip = _laserSoundClip;
+        }
+
+
         _rightEngine.gameObject.SetActive(false);
         _leftEngine.gameObject.SetActive(false);
+
+
     }
 
     // Update is called once per frame
@@ -112,19 +127,10 @@ public class Player : MonoBehaviour
         }
 
         //play the laser audio clip
-        StartCoroutine(LaserSoundRoutine());
+        _audioSource.Play();
 
     }
     
-    IEnumerator LaserSoundRoutine()
-    {
-        AudioSource audio = GetComponent<AudioSource>();
-        
-        audio.Play();
-        yield return new WaitForSeconds(audio.clip.length);
-        audio.clip = laserShot;
-        audio.Play();
-    }
 
     public void Damage()
     {

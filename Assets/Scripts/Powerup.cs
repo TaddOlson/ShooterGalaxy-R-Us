@@ -7,7 +7,7 @@ public class Powerup : MonoBehaviour
     [SerializeField]
     private float _speed = 3.0f;
     [SerializeField]
-    private int powerupID; //0 Triple Shot 1 Speed 2 Shields
+    private int _powerupID; //0 Triple Shot 1 Speed 2 Shields
 
     // Update is called once per frame
     void Update()
@@ -29,7 +29,7 @@ public class Powerup : MonoBehaviour
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
             {   
-                switch(powerupID)
+                switch(_powerupID)
                 {
                     case 0:
                         player.TripleShotActive();
