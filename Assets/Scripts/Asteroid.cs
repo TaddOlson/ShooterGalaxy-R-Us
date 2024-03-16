@@ -10,24 +10,9 @@ public class Asteroid : MonoBehaviour
     private GameObject _explosionPrefab;
     private SpawnManager _spawnManager;
 
-    [SerializeField]
-    private AudioClip _explosionSoundClip;
-    private AudioSource _audioSource;
-    
-
     private void Start()
     {
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
-        _audioSource = GetComponent<AudioSource>();
-
-        if(_audioSource == null)
-        {
-            Debug.LogError("AudioSource on the Asteroid is NULL.");
-        }
-        else
-        {
-            _audioSource.clip = _explosionSoundClip;
-        }
     }
 
     // Update is called once per frame
@@ -46,7 +31,6 @@ public class Asteroid : MonoBehaviour
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(other.gameObject);
             _spawnManager.StartSpawning();
-            _audioSource.Play(3);
             Destroy(this.gameObject, 0.25f);
         }
 

@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     private UIManager _uiManager;
 
     [SerializeField]
-    private AudioClip _laserSoundClip, _explosionSoundClip;
+    private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
     
     
